@@ -15,14 +15,14 @@ struct TreeNode{
     }
 };
 
-            void postorder(TreeNode*root){
+void postorder(TreeNode*root){
 
-                if(!root) return;
+    if(!root) return;
 
-                postorder(root->left);
-                postorder(root->right);
-                cout<<root->val<<" ";
-            }
+    postorder(root->left);
+    postorder(root->right);
+    cout<<root->val<<" ";
+}
 
 int main(){
 
