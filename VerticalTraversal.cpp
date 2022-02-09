@@ -15,6 +15,26 @@ struct TreeNode{
     }
 };
 
+
+void verticalRecursive(TreeNode* root, int vertical, int level, map<int,map<int,vector<int>>>&mp){
+
+    if(!root) return;
+
+    mp[vertical][level].push_back(root->val);
+    verticalRecursive(root->left,vertical-1,level+1,mp);
+    verticalRecursive(root->right,vertical+1,level+1,mp);
+
+}
+
+void verticalRecursiveV2(TreeNode* root, int vertical,int level,map<int,map<int,multiset<int>>>&mp){
+
+    if(!root) return;
+
+    mp[vertical][level].insert(root->val);
+    verticalRecursiveV2(root->left,vertical-1,level+1,mp);
+    verticalRecursiveV2(root->right,vertical+1,level+1,mp);
+}
+
 // If 2 or more Tree Nodes shares the same vertical level then the one with earlier 
 // occurence in the pre-order traversal of tree comes first in the output.
 vector<vector<int>> verticalOrderTraversal(TreeNode* root){
@@ -115,6 +135,45 @@ int main(){
         }
         cout<<endl;      
     }  
+
+    cout<<endl<<endl; 
+
+    vector<vector<int>> ans;
+    map<int,map<int,vector<int>>> mp;
+    verticalRecursive(root,0,0,mp);
+    for(auto x : mp){
+        vector<int> level;
+        for(auto y : x.second){
+            level.insert(level.end(),y.second.begin(),y.second.end());
+        }
+        ans.push_back(level);
+    }
+
+    for(int i=0;i<ans.size();i++){
+        for(int j=0;j<ans[i].size();j++){
+            cout<<ans[i][j]<<" ";
+        }
+        cout<<endl;      
+    }
+
+    cout<<endl<<endl; 
+
+    vector<vector<int>> ans1;
+    map<int,map<int,multiset<int>>> mp1;
+    verticalRecursiveV2(root,0,0,mp1);
+    for(auto x : mp1){
+        vector<int> level;
+        for(auto y : x.second){
+            level.insert(level.end(),y.second.begin(),y.second.end());
+        }
+        ans1.push_back(level);
+    }
+    for(int i=0;i<ans1.size();i++){
+        for(int j=0;j<ans1[i].size();j++){
+            cout<<ans1[i][j]<<" ";
+        }
+        cout<<endl;      
+    }    
     /*
                     
                     1
