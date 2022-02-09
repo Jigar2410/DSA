@@ -15,6 +15,13 @@ struct TreeNode{
     }
 };
 
+void preorder(TreeNode*root){
+    
+    if(!root) return;
+    cout<<root->val<<" ";
+    preorder(root->left);
+    preorder(root->right);
+}   
 
 TreeNode* mergeTrees(TreeNode* p, TreeNode* q){
 
@@ -55,11 +62,8 @@ int main(){
     root1->left->left = new TreeNode(3);
     root1->right->right = new TreeNode(3);
 
-    cout<<isSymmetric(root)<<endl;
-    cout<<isSymmetric(root1)<<endl;
-
-    cout<<isSymmetricV2(root)<<endl;
-    cout<<isSymmetricV2(root1)<<endl;
+    TreeNode* root2 = mergeTrees(root,root1);
+    preorder(root2);
     
     /*
                     
