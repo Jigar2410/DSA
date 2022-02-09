@@ -32,6 +32,39 @@ bool isSymmetric(TreeNode* root) {
     return symUtil(root->left,root->right);
 }
 
+
+bool isSymmetricV2(TreeNode* root) {
+
+    if(!root) return false;
+    queue<pair<TreeNode*,TreeNode*>> q;
+    q.push({root->left,root->right});
+    while(!q.empty()){
+        int size = q.size();
+        for(int i=0;i<size;i++){
+            TreeNode* curr1 = q.front().first;
+            TreeNode* curr2 = q.front().second;
+            q.pop();
+            
+            if(!curr1 || !curr2){
+                if(curr1!=curr2) return false;
+                continue;
+            }  
+            
+            if(curr1->val!= curr2->val) return false;
+            
+            TreeNode* left1 = NULL,*right1 = NULL,*left2 = NULL,*right2 = NULL;
+            if(curr1->left) left1 = curr1->left;
+            if(curr1->right) right1 = curr1->right;
+            if(curr2->left) left2 = curr2->left;
+            if(curr2->right) right2 = curr2->right;
+            
+            q.push({left1,right2});
+            q.push({left2,right1});
+        }
+    }
+
+    return true;
+}
 int main(){
 
     TreeNode* root = new TreeNode(1);
@@ -60,6 +93,9 @@ int main(){
 
     cout<<isSymmetric(root)<<endl;
     cout<<isSymmetric(root1)<<endl;
+
+    cout<<isSymmetricV2(root)<<endl;
+    cout<<isSymmetricV2(root1)<<endl;
     
     /*
                     
