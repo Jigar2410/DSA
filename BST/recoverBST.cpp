@@ -74,10 +74,6 @@ int main(){
     root->right->right->left = new TreeNode(11);
     root->right->right->right = new TreeNode(14);
 
-    successor(root,9);
-    cout<<succ<<endl;
-    predecessor(root,9);
-    cout<<pred<<endl;
     /*
                     
                    8
