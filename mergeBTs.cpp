@@ -54,7 +54,7 @@ int main(){
     root->right->right = new TreeNode(7);
     root->right->right->left = new TreeNode(11);
     root->right->right->left->right = new TreeNode(13);
-    root->right->right->right = new TreeNode(12);
+//     root->right->right->right = new TreeNode(12);
 
     TreeNode* root1 = new TreeNode(1);
     root1->left = new TreeNode(2);
